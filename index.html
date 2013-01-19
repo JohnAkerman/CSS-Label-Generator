@@ -119,36 +119,36 @@
 			var cssElements = Array();
 			var outputCSS = ""
 
-			cssElements['width'] = "250px";
-			cssElements['height'] = "100px";
+			cssElements['width'] = 250;
+			cssElements['height'] = 100;
 			cssElements['backgroundColor'] = "grey";
-			cssElements['labelBoxLeft'] = "50px";
-			cssElements['borderWidth'] = "2px";
-			cssElements['fontSize'] = "40px";
+			cssElements['labelBoxLeft'] = 50;
+			cssElements['borderWidth'] = 2;
+			cssElements['fontSize'] = 40;
 			cssElements['fontWeight'] = "bold";
 			cssElements['backgroundTrans'] = "transparent";
 
 			function makeCSS() {
 
 				outputCSS = ".labelBox {\n";
-				outputCSS += "\twidth: " + cssElements['width'] + ";\n";
-				outputCSS += "\theight: " + cssElements['height'] + ";\n";
+				outputCSS += "\twidth: " + cssElements['width'] + "px;\n";
+				outputCSS += "\theight: " + cssElements['height'] + "px;\n";
 				outputCSS += "\tposition: absolute;\n";
-				outputCSS += "\tleft: " + cssElements['labelBoxLeft'] + ";\n";
+				outputCSS += "\tleft: " + cssElements['labelBoxLeft'] + "px;\n";
 				outputCSS += "\ttop: 0;\n";
 				outputCSS += "\tdisplay: block;\n";		
 				outputCSS += "\tbackground-color: " + cssElements['backgroundColor'] + ";\n";
 				outputCSS += "}\n";
 
 				outputCSS += ".labelBox:after {\n";
-				outputCSS += "\twidth: " + (cssElements['width'] - cssElements['borderWidth']) + ";\n";
-				outputCSS += "\theight: " + (cssElements['height'] - cssElements['borderWidth']) + ";\n";
+				outputCSS += "\twidth: " + (cssElements['width'] - cssElements['borderWidth']) + "px;\n";
+				outputCSS += "\theight: " + (cssElements['height'] - cssElements['borderWidth']) + "px;\n";
 				outputCSS += "\tposition: absolute;\n";
 				outputCSS += "\tdisplay: block;\n";
-				outputCSS += "\ttop: " + cssElements['borderWidth'] + ";\n";
+				outputCSS += "\ttop: " + cssElements['borderWidth'] + "px;\n";
 				outputCSS += "\ttext-align: center\n";
-				outputCSS += "\tline-height: " + (cssElements['height'] - cssElements['borderWidth']) + ";\n";
-				outputCSS += "\tfont-size: " + cssElements['fontSize'] + ";\n";
+				outputCSS += "\tline-height: " + (cssElements['height'] - cssElements['borderWidth']) + "px;\n";
+				outputCSS += "\tfont-size: " + cssElements['fontSize'] + "px;\n";
 				outputCSS += "\tfont-weight: " + cssElements['fontWeight'] + ";\n";
 				outputCSS += "\tcontent: '';\n";
 				outputCSS += "\tfont-family: Arial, sans-serif;\n";
@@ -157,10 +157,10 @@
 				outputCSS += ".labelArrow {\n";
 				outputCSS += "\twidth: 0;\n";
 				outputCSS += "\theight: 0;\n";
-				outputCSS += "\tborder-top: " + cssElements['labelBoxLeft'] + " solid " + cssElements['backgroundTrans'] + ";\n";
-				outputCSS += "\tborder-bottom: " + cssElements['labelBoxLeft'] + " solid " + cssElements['backgroundTrans'] + ";\n";
-				outputCSS += "\tborder-right: " + cssElements['labelBoxLeft'] + " solid " + cssElements['backgroundColor'] + ";\n";
-				outputCSS += "\tbackground-color" + cssElements['backgroundTrans'] + ";\n";
+				outputCSS += "\tborder-top: " + cssElements['labelBoxLeft'] + "px solid " + cssElements['backgroundTrans'] + ";\n";
+				outputCSS += "\tborder-bottom: " + cssElements['labelBoxLeft'] + "px solid " + cssElements['backgroundTrans'] + ";\n";
+				outputCSS += "\tborder-right: " + cssElements['labelBoxLeft'] + "px solid " + cssElements['backgroundColor'] + ";\n";
+				outputCSS += "\tbackground-color: " + cssElements['backgroundTrans'] + ";\n";
 				outputCSS += "\tposition: relative;\n";
 				outputCSS += "}\n";
 
@@ -168,13 +168,13 @@
 				outputCSS += "\tcontent: '';\n";
 				outputCSS += "\twidth: 0;\n";
 				outputCSS += "\theight: 0;\n";
-				outputCSS += "\tborder-top: " + (cssElements['labelBoxLeft'] - cssElements['borderWidth']) + " solid " + cssElements['backgroundTrans'] + ";\n";
-				outputCSS += "\tborder-bottom: " + (cssElements['labelBoxLeft'] - cssElements['borderWidth']) + " solid " + cssElements['backgroundTrans'] + ";\n";
-				outputCSS += "\tborder-right: " + (cssElements['labelBoxLeft'] - cssElements['borderWidth']) + " solid " + cssElements['backgroundColor'] + ";\n";
-				outputCSS += "\tbackground-color" + cssElements['backgroundTrans'] + ";\n";
+				outputCSS += "\tborder-top: " + (cssElements['labelBoxLeft'] - cssElements['borderWidth']) + "px solid " + cssElements['backgroundTrans'] + ";\n";
+				outputCSS += "\tborder-bottom: " + (cssElements['labelBoxLeft'] - cssElements['borderWidth']) + "px solid " + cssElements['backgroundTrans'] + ";\n";
+				outputCSS += "\tborder-right: " + (cssElements['labelBoxLeft'] - cssElements['borderWidth']) + "px solid " + cssElements['backgroundColor'] + ";\n";
+				outputCSS += "\tbackground-color: " + cssElements['backgroundTrans'] + ";\n";
 				outputCSS += "\tposition: absolute;\n";
-				outputCSS += "\ttop: -" + cssElements['labelBoxLeft'] + ";\n";
-				outputCSS += "\tleft: " + cssElements['borderWidth'] + ";\n";
+				outputCSS += "\ttop: -" + cssElements['labelBoxLeft'] + "px;\n";
+				outputCSS += "\tleft: " + cssElements['borderWidth'] + "px;\n";
 				outputCSS += "}\n";
 
 				$("#activeStyle").replaceWith("<style id='activeStyle' type='text/css'>" + outputCSS + "</style>");
