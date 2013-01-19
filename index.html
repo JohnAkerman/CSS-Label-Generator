@@ -3,8 +3,10 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Label Generator</title>
-
+		<link rel="stylesheet" type="text/css" href="css/normalise.css">
+		<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/themes/base/jquery-ui.css">
 		<style>
+			* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 
 			html { background: url(images/debut_dark.png) repeat 0 0 ;}
 
@@ -27,6 +29,10 @@
 
 			#controls {
 				height: 190px;
+			}
+
+			#controls .controlSet {
+				width: 280px;
 			}
 
 			#cssOutput {
@@ -54,9 +60,26 @@
 
 			.labelContainer{ position: relative;}
 
+			.settings {
+				background-color: white;
+				border-radius: 5px;
+				padding: 10px 15px;
+				font: 12px 'Helvetica Neue',Helvetica, sans-serif;
+				color: #626671;
+			}
+
+			.sliderArea {
+				width: 50px;
+			}
+
+			.sliderArea span {
+				display: block;
+				margin: 5px 0;
+			}
 		</style>
 
 		<script type='text/javascript' src='http://code.jquery.com/jquery-1.9.0.min.js'></script>
+		<script type="text/javascript" src="jquery-ui-1.10.0.custom.min.js"></script>
 		<script type="text/javascript">
 
 			var cssElements = Array();
@@ -182,27 +205,59 @@
 				$("head").append("<style id='activeStyle' type='text/css'></style>");
 				
 				makeHTML();
-				makeCSS();				
+				makeCSS();
+
+				$('#position').slider({
+					value: 0,
+					min: 0,
+					max: 1,
+					slide: function(event, ui) {
+						if (ui.value == 0)
+					    	cssElements['position'] = "left";
+					    else
+					    	cssElements['position'] = "right";
+
+					    makeCSS();
+					}
+				});				
+
+				$('#borderQuestion').slider({
+					values: [1],
+					min: 0,
+					max: 1,
+					slide: function(event, ui) {
+					    cssElements['borderQuestion'] = ui.value ;
+					    makeCSS();
+					}
+				});	
 				
+				$('#box-shadow').slider({
+					values: [1],
+					min: 0,
+					max: 1,
+					slide: function(event, ui) {
+					    cssElements['box-shadow'] = ui.value ;
+					    makeCSS();
+					}
+				});	
+
 				$("#width").val(cssElements['width']);
 				$("#height").val(cssElements['height']);
-				$("#box-shadow").val(cssElements['box-shadow']);
 				$("#borderWidth").val(cssElements['borderWidth']);
 				$("#fontSize").val(cssElements['fontSize']);
 				$("#borderColor").val(cssElements['borderColor']);
 				$("#backgroundColor").val(cssElements['backgroundColor']);
-				$("#borderQuestion").val(cssElements['borderQuestion']);
 				$("#fontSize").val(cssElements['fontSize']);
 				$("#fontColor").val(cssElements['fontColor']);
 				$("#message").val(cssElements['message']);
-
-
 
 				$(".settings input").change(function() {
 					cssElements[$(this).attr("id")] = $(this).val();
 					makeHTML();
 					makeCSS();
 				});
+
+				
 			});
 		</script>
 	</head>
@@ -213,27 +268,31 @@
 					<div id="labelOutput"></div>
 
 					<div id="controls">
-						<div id="controlsOne">
-
+						<div class="controlSet">
 							<form class="settings">
 								<div class="form-title">Width</div>
 								<input class="form-field" type="text" id="width"/><br />
 								<div class="form-title">Height</div>
 								<input class="form-field" type="text" id="height" /><br />
-								<div class="form-title">Position</div>
-								Left: <input class="form-field" type="radio" id="position" name="position" checked="checked" value="left"/><br/>
-								Right: <input class="form-field" type="radio" id="position" name="position" value="right"/><br/>
-
-								<div class="form-title">Box Shadow</div>
-								<input class="form-field" type="text" id="box-shadow" /><br />
+								<div class="sliderArea">
+									<span>Position</span>
+									<div id="position"></div><br />
+								</div>
+								
+								<div class="sliderArea">
+									<span>Box Shadow</span>
+									<div id="box-shadow"></div><br />
+								</div>
 							</form>
-							Padding
 						</div>
 
-						<div id="controlsTwo">
+						<div class="controlSet">
 							<form class="settings">
-								<div class="form-title">Border?</div>
-								<input class="form-field" type="text" id="borderQuestion"/><br />
+								<div class="sliderArea">
+									<span>Border</span>
+									<div id="borderQuestion"></div><br />
+								</div>
+
 								<div class="form-title">Border Colour</div>
 								<input class="form-field" type="text" id="borderColor"/><br />
 								<div class="form-title">Border Width</div>
@@ -244,7 +303,7 @@
 							BOrder Thickness
 						</div>
 
-						<div id="controlsThree">
+						<div class="controlSet">
 							<form class="settings">
 								<div class="form-title">Font Size</div>
 								<input class="form-field" type="text" id="fontSize"/><br />
