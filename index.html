@@ -11,7 +11,7 @@
 			html { background: url(images/debut_dark.png) repeat 0 0 ;}
 
 			#wrapper {
-				width: 860px;
+				width: 960px;
 				margin: 0 auto;
 				margin-top: 100px;
 				min-height: 40px;
@@ -20,7 +20,7 @@
 
 			#actions {
 				float: left;
-				width: 400px;
+				width: 560px;
 			}
 			#labelOutput {
 				height: 300px;
@@ -32,7 +32,9 @@
 			}
 
 			#controls .controlSet {
-				width: 280px;
+				width: 160px;
+				float: left;
+				margin: 0 10px;
 			}
 
 			#cssOutput {
@@ -68,14 +70,39 @@
 				color: #626671;
 			}
 
-			.sliderArea {
+			.sliderAreaLarge {
+				width: 130px;
+			}
+
+			.sliderAreaSmall {
+				width: 70px;
+				float: left;
+				margin: 0 5px;
+			}
+
+			.sliderSlide {
 				width: 50px;
+				margin: 0 auto;
 			}
 
 			.sliderArea span {
 				display: block;
 				margin: 5px 0;
 			}
+
+			.clear {
+				float: none;
+				clear: both;
+			}
+
+			.ui-slider .ui-slider-handle { 
+				border:none!important;
+				background: url(images/slider-toggle.png) top no-repeat!important; 
+				width: 1.6em!important; 
+				height: 1.6em!important; 
+				cursor:pointer!important;
+			}
+
 		</style>
 
 		<script type='text/javascript' src='http://code.jquery.com/jquery-1.9.0.min.js'></script>
@@ -85,18 +112,18 @@
 			var cssElements = Array();
 			var outputCSS = "", outputHTML = "";
 
-			cssElements['width'] = 250;
+			cssElements['width'] = 300;
 			cssElements['height'] = 100;
 			cssElements['borderColor'] = "red";
 			cssElements['backgroundColor'] = "grey";
-			cssElements['borderWidth'] = 2;
-			cssElements['fontSize'] = 40;
+			cssElements['borderWidth'] = 25;
+			cssElements['fontSize'] = 30;
 			cssElements['fontWeight'] = "bold";
 			cssElements['fontColor'] = "black";
 			cssElements['backgroundTrans'] = "transparent";
-			cssElements['message'] = "Here";
+			cssElements['message'] = "Message";
 			cssElements['borderQuestion'] = 1;
-			cssElements['box-shadow'] = 1;
+			cssElements['box-shadow'] = 0;
 			cssElements['position'] = "left";
 
 			function makeHTML() {
@@ -147,7 +174,7 @@
 					outputCSS += "\tdisplay: block;\n";
 					outputCSS += "\ttop: " + cssElements['borderWidth'] + "px;\n";
 					outputCSS += "\tbackground-color: " + cssElements['borderColor'] + ";\n";
-					outputCSS += "\tcontent: '"+ cssElements['message']+"';\n";
+					outputCSS += "\tcontent: '';\n";
 					outputCSS += "}\n";
 				}
 
@@ -207,6 +234,26 @@
 				makeHTML();
 				makeCSS();
 
+				$('#width').slider({
+					value: 300,
+					min: 10,
+					max: 500,
+					slide: function(event, ui) {
+						cssElements['width'] = ui.value;
+					    makeCSS();
+					}
+				});	
+
+				$('#height').slider({
+					value: 100,
+					min: 10,
+					max: 200,
+					slide: function(event, ui) {
+						cssElements['height'] = ui.value;
+					    makeCSS();
+					}
+				});	
+
 				$('#position').slider({
 					value: 0,
 					min: 0,
@@ -222,32 +269,37 @@
 				});				
 
 				$('#borderQuestion').slider({
-					values: [1],
+					value: 1,
 					min: 0,
 					max: 1,
 					slide: function(event, ui) {
-					    cssElements['borderQuestion'] = ui.value ;
-					    makeCSS();
-					}
-				});	
-				
-				$('#box-shadow').slider({
-					values: [1],
-					min: 0,
-					max: 1,
-					slide: function(event, ui) {
-					    cssElements['box-shadow'] = ui.value ;
+					    cssElements['borderQuestion'] = ui.value;
 					    makeCSS();
 					}
 				});	
 
-				$("#width").val(cssElements['width']);
-				$("#height").val(cssElements['height']);
-				$("#borderWidth").val(cssElements['borderWidth']);
-				$("#fontSize").val(cssElements['fontSize']);
+				$('#borderWidth').slider({
+					value: 25,
+					min: 1,
+					max: 50,
+					slide: function(event, ui) {
+					    cssElements['borderWidth'] = ui.value;
+					    makeCSS();
+					}
+				});	
+
+				$('#fontSize').slider({
+					value: 30,
+					min: 9,
+					max: 80,
+					slide: function(event, ui) {
+					    cssElements['fontSize'] = ui.value;
+					    makeCSS();
+					}
+				});	
+
 				$("#borderColor").val(cssElements['borderColor']);
 				$("#backgroundColor").val(cssElements['backgroundColor']);
-				$("#fontSize").val(cssElements['fontSize']);
 				$("#fontColor").val(cssElements['fontColor']);
 				$("#message").val(cssElements['message']);
 
@@ -256,8 +308,6 @@
 					makeHTML();
 					makeCSS();
 				});
-
-				
 			});
 		</script>
 	</head>
@@ -270,33 +320,39 @@
 					<div id="controls">
 						<div class="controlSet">
 							<form class="settings">
-								<div class="form-title">Width</div>
-								<input class="form-field" type="text" id="width"/><br />
-								<div class="form-title">Height</div>
-								<input class="form-field" type="text" id="height" /><br />
-								<div class="sliderArea">
+								<div class="sliderArea sliderAreaLarge">
+									<span>Label Width</span>
+									<div id="width"></div><br />
+								</div>
+
+								<div class="sliderArea sliderAreaLarge">
+									<span>Label Height</span>
+									<div id="height"></div><br />
+								</div>
+
+								<div class="sliderArea sliderAreaSmall">
 									<span>Position</span>
-									<div id="position"></div><br />
+									<div id="position" class="sliderSlide"></div><br />
 								</div>
-								
-								<div class="sliderArea">
-									<span>Box Shadow</span>
-									<div id="box-shadow"></div><br />
-								</div>
+								<div class="clear"></div>
 							</form>
 						</div>
 
 						<div class="controlSet">
 							<form class="settings">
-								<div class="sliderArea">
+								<div class="sliderArea ">
 									<span>Border</span>
-									<div id="borderQuestion"></div><br />
+									<div id="borderQuestion" class="sliderAreaSmall"></div><br />
+								</div>
+
+								<div class="sliderArea ">
+									<span>Border Width</span>
+									<div id="borderWidth" class=""></div><br />
 								</div>
 
 								<div class="form-title">Border Colour</div>
 								<input class="form-field" type="text" id="borderColor"/><br />
-								<div class="form-title">Border Width</div>
-								<input class="form-field" type="text" id="borderWidth" /><br />
+								
 								<div class="form-title">Fill Colour</div>
 								<input class="form-field" type="text" id="backgroundColor" /><br />
 							</form>
@@ -305,8 +361,10 @@
 
 						<div class="controlSet">
 							<form class="settings">
-								<div class="form-title">Font Size</div>
-								<input class="form-field" type="text" id="fontSize"/><br />
+								<div class="sliderArea ">
+									<span>Font Size</span>
+									<div id="fontSize" class=""></div><br />
+								</div>
 								<div class="form-title">Font Colour</div>
 								<input class="form-field" type="text" id="fontColor"/><br />
 								<div class="form-title">Font Message</div>
