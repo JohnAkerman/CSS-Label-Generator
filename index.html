@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		<meta charset="UTF-8">
+		<title>Label Generator</title>
+
+		<style>
+
+			html { background: url(images/debut_dark.png) repeat 0 0 ;}
+
+			#wrapper {
+				width: 860px;
+				margin: 0 auto;
+				margin-top: 100px;
+				min-height: 40px;
+			}
+
+
+			#actions {
+				float: left;
+				width: 400px;
+			}
+			#labelOutput {
+				height: 300px;
+				background-color: red;
+				margin-bottom: 20px;
+			}
+
+			#controls {
+				background-color: red;
+				height: 190px;
+			}
+
+			#cssOutput {
+				float: right;
+				width: 400px;
+			}
+			#cssOutput #code {
+				width: 390px;
+				display: block;
+				background-color: rgba(0,0,0,0.4);
+				-webkit-box-shadow: 0 1px 1px 0 rgba(255,255,255,0.3),inset 0 1px 5px rgba(0,0,0,0.1);
+				-moz-box-shadow:    0 1px 1px 0 rgba(255,255,255,0.3),inset 0 1px 5px rgba(0,0,0,0.1);
+				box-shadow:         0 1px 1px 0 rgba(255,255,255,0.3),inset 0 1px 5px rgba(0,0,0,0.1);
+				border-radius: 5px;
+				white-space: pre;
+				color: white;
+				text-shadow: 0 1px 1px black;
+				font-size: 12px;
+				font-family: "Courier new";
+				font-weight: bold;
+				padding: 10px;
+			}
+
+			.labelContainer{ position: relative;}
+
+		</style>
+
+		<!--
+		<style id="activeStyle" type="text/css">
+			.labelArrow {
+			  width: 0px;
+			  height: 0px;
+			  border-top: 50px solid transparent;
+			  border-bottom: 50px solid transparent;
+			  border-right: 50px solid grey;
+			  background-color:  transparent;
+			  position: relative;
+			}
+
+			.labelArrow:after {
+		      content:"";
+			  width: 0px;
+			  height: 0px;
+			  border-top: 48px solid transparent;
+			  border-bottom: 48px solid transparent;
+			  border-right:  48px solid red;
+			  background-color:  transparent;
+			  position: absolute;
+			  top: -48px;
+			  left: 2px;
+
+			}
+
+			.labelBox {
+				width: 250px;
+				height:100px;
+				background-color: grey;
+				position:absolute;
+				left:50px;
+				display: block;
+				top: 0;
+				;
+			}
+
+			.labelBox:after {
+				width: 248px;
+				background-color: red;
+				height:96px;
+				position:absolute;
+				display: block;
+				top: 2px;
+
+				text-align: center;
+				line-height: 90px;
+				font-size: 40px;
+				font-weight: bold;
+				content:"";
+				font-family: Arial;
+			}
+		</style>
+	-->
+
+
+		<script type='text/javascript' src='http://code.jquery.com/jquery-1.9.0.min.js'></script>
+		<script type="text/javascript">
+
+			var cssElements = Array();
+			var outputCSS = ""
+
+			cssElements['width'] = "250px";
+			cssElements['height'] = "100px";
+			cssElements['backgroundColor'] = "grey";
+			cssElements['labelBoxLeft'] = "50px";
+			cssElements['borderWidth'] = "2px";
+			cssElements['fontSize'] = "40px";
+			cssElements['fontWeight'] = "bold";
+			cssElements['backgroundTrans'] = "transparent";
+
+			function makeCSS() {
+
+				outputCSS = ".labelBox {\n";
+				outputCSS += "width: " + cssElements['width'] + ";\n";
+				outputCSS += "height: " + cssElements['height'] + ";\n";
+				outputCSS += "position: absolute;\n";
+				outputCSS += "left: " + cssElements['labelBoxLeft'] + ";\n";
+				outputCSS += "top: 0;";
+				outputCSS += "display: block;";		
+				outputCSS += "background-color: " + cssElements['backgroundColor'] + ";\n";
+				outputCSS += "}";
+
+				outputCSS += ".labelBox:after {";
+				outputCSS += "width: " + (cssElements['width'] - cssElements['borderWidth']) + ";\n";
+				outputCSS += "height: " + (cssElements['height'] - cssElements['borderWidth']) + ";\n";
+				outputCSS += "position: absolute;";
+				outputCSS += "display: block;";
+				outputCSS += "top: " + cssElements['borderWidth'] + ";\n";
+				outputCSS += "text-align: center";
+				outputCSS += "line-height: " + (cssElements['height'] - cssElements['borderWidth']) + ";\n";
+				outputCSS += "font-size: " + cssElements['fontSize'] + ";\n";
+				outputCSS += "font-weight: " + cssElements['fontWeight'] + ";\n";
+				outputCSS += "content: '';";
+				outputCSS += "font-family: Arial, sans-serif;";
+				outputCSS += "}";
+
+				outputCSS += ".labelArrow {";
+				outputCSS += "width: 0;";
+				outputCSS += "height: 0;";
+				outputCSS += "border-top: " + cssElements['labelBoxLeft'] + " solid " + cssElements['backgroundTrans'] + ";\n";
+				outputCSS += "border-bottom: " + cssElements['labelBoxLeft'] + " solid " + cssElements['backgroundTrans'] + ";\n";
+				outputCSS += "border-right: " + cssElements['labelBoxLeft'] + " solid " + cssElements['backgroundColor'] + ";\n";
+				outputCSS += "background-color" + cssElements['backgroundTrans'] + ";\n";
+				outputCSS += "position: relative;";
+				outputCSS += "}";
+
+				outputCSS += ".labelArrow:after {";
+				outputCSS += "content: ''; ";
+				outputCSS += "width: 0;";
+				outputCSS += "height: 0;";
+				outputCSS += "border-top: " + (cssElements['labelBoxLeft'] - cssElements['borderWidth']) + " solid " + cssElements['backgroundTrans'] + ";\n";
+				outputCSS += "border-bottom: " + (cssElements['labelBoxLeft'] - cssElements['borderWidth']) + " solid " + cssElements['backgroundTrans'] + ";\n";
+				outputCSS += "border-right: " + (cssElements['labelBoxLeft'] - cssElements['borderWidth']) + " solid " + cssElements['backgroundColor'] + ";\n";
+				outputCSS += "background-color" + cssElements['backgroundTrans'] + ";\n";
+				outputCSS += "position: absolute;";
+				outputCSS += "top: -" + cssElements['labelBoxLeft'] + ";\n";
+				outputCSS += "left: " + cssElements['borderWidth'] + ";\n";
+				outputCSS += "}";
+
+				$("#activeStyle").replaceWith("<style id='activeStyle' type='text/css'>" + outputCSS + "</style>");
+				//outputCSS = outputCSS.replace(/;/g,";<br />&nbsp;&nbsp;").replace(/{/g,"{<br />&nbsp;&nbsp;").replace(/}/g,"&nbsp;}<br />");
+				$("#cssOutput #code").html(outputCSS);
+
+				console.log("Created output" + outputCSS);
+			}
+
+
+			$(document).ready(function() {
+
+				 $("head").append("<style id='activeStyle' type='text/css'></style>");
+				 makeCSS();				
+			});
+
+		</script>
+	</head>
+	<body>
+		<div id="wrapper">
+
+				<div id="actions">
+					<div id="labelOutput">
+						<div class="labelContainer">
+							<div class="labelArrow"></div>
+							<div class="labelBox"><span>Contents</span></div>
+						</div>
+					</div>
+
+					<div id="controls">
+						<div id="controlsOne">
+							Label Width
+							Label Height
+							Box Shadow?
+							Padding
+						</div>
+
+						<div id="controlsTwo">
+							Border?
+							Border Color
+							Fill Color
+							Edge Only?
+							BOrder Thickness
+						</div>
+
+						<div id="controlsThree">
+							Font size
+							Font color
+							Font Message
+							Shadow colour
+						</div>
+
+					</div>
+				</div>
+
+			<div id="cssOutput">
+				<code id="code" readonly="readonly"></code>
+			</div>
+
+		</div>
+	</body>
+</html>
