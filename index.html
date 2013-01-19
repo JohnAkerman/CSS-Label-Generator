@@ -22,12 +22,10 @@
 			}
 			#labelOutput {
 				height: 300px;
-				background-color: red;
 				margin-bottom: 20px;
 			}
 
 			#controls {
-				background-color: red;
 				height: 190px;
 			}
 
@@ -35,6 +33,7 @@
 				float: right;
 				width: 400px;
 			}
+
 			#cssOutput #code {
 				width: 390px;
 				display: block;
@@ -121,14 +120,21 @@
 
 			cssElements['width'] = 250;
 			cssElements['height'] = 100;
+			cssElements['borderColor'] = "red";
 			cssElements['backgroundColor'] = "grey";
 			cssElements['labelBoxLeft'] = 50;
 			cssElements['borderWidth'] = 2;
 			cssElements['fontSize'] = 40;
 			cssElements['fontWeight'] = "bold";
 			cssElements['backgroundTrans'] = "transparent";
+			cssElements['message'] = "Message";
+			cssElements['borderQuestion'] = 1;
+
 
 			function makeCSS() {
+
+				cssElements['labelBoxLeft'] = Math.round(cssElements['height'] / 2);
+				console.log(cssElements['height']);
 
 				outputCSS = ".labelBox {\n";
 				outputCSS += "\twidth: " + cssElements['width'] + "px;\n";
@@ -138,20 +144,21 @@
 				outputCSS += "\ttop: 0;\n";
 				outputCSS += "\tdisplay: block;\n";		
 				outputCSS += "\tbackground-color: " + cssElements['backgroundColor'] + ";\n";
+				outputCSS += "\ttext-align: center;\n";
+				outputCSS += "\tline-height: " + (cssElements['height'] - cssElements['borderWidth']) + "px;\n";
+				outputCSS += "\tfont-size: " + cssElements['fontSize'] + "px;\n";
+				outputCSS += "\tfont-weight: " + cssElements['fontWeight'] + ";\n";
+				outputCSS += "\tfont-family: Arial, sans-serif;\n";
 				outputCSS += "}\n";
 
 				outputCSS += ".labelBox:after {\n";
 				outputCSS += "\twidth: " + (cssElements['width'] - cssElements['borderWidth']) + "px;\n";
-				outputCSS += "\theight: " + (cssElements['height'] - cssElements['borderWidth']) + "px;\n";
+				outputCSS += "\theight: " + (cssElements['height'] - cssElements['borderWidth'] - cssElements['borderWidth']) + "px;\n";
 				outputCSS += "\tposition: absolute;\n";
 				outputCSS += "\tdisplay: block;\n";
 				outputCSS += "\ttop: " + cssElements['borderWidth'] + "px;\n";
-				outputCSS += "\ttext-align: center\n";
-				outputCSS += "\tline-height: " + (cssElements['height'] - cssElements['borderWidth']) + "px;\n";
-				outputCSS += "\tfont-size: " + cssElements['fontSize'] + "px;\n";
-				outputCSS += "\tfont-weight: " + cssElements['fontWeight'] + ";\n";
-				outputCSS += "\tcontent: '';\n";
-				outputCSS += "\tfont-family: Arial, sans-serif;\n";
+				outputCSS += "\tbackground-color: " + cssElements['borderColor'] + ";\n";
+				outputCSS += "\tcontent: '"+ cssElements['message']+"';\n";
 				outputCSS += "}\n";
 
 				outputCSS += ".labelArrow {\n";
@@ -170,18 +177,19 @@
 				outputCSS += "\theight: 0;\n";
 				outputCSS += "\tborder-top: " + (cssElements['labelBoxLeft'] - cssElements['borderWidth']) + "px solid " + cssElements['backgroundTrans'] + ";\n";
 				outputCSS += "\tborder-bottom: " + (cssElements['labelBoxLeft'] - cssElements['borderWidth']) + "px solid " + cssElements['backgroundTrans'] + ";\n";
-				outputCSS += "\tborder-right: " + (cssElements['labelBoxLeft'] - cssElements['borderWidth']) + "px solid " + cssElements['backgroundColor'] + ";\n";
+				outputCSS += "\tborder-right: " + (cssElements['labelBoxLeft'] - cssElements['borderWidth']) + "px solid " + cssElements['borderColor'] + ";\n";
 				outputCSS += "\tbackground-color: " + cssElements['backgroundTrans'] + ";\n";
 				outputCSS += "\tposition: absolute;\n";
-				outputCSS += "\ttop: -" + cssElements['labelBoxLeft'] + "px;\n";
-				outputCSS += "\tleft: " + cssElements['borderWidth'] + "px;\n";
+				outputCSS += "\ttop: -" + (cssElements['labelBoxLeft'] - cssElements['borderWidth']) + "px;\n";
+				var tmp = parseInt(cssElements['borderWidth']) + 1;
+				outputCSS += "\tleft: " + tmp +  "px;\n";
 				outputCSS += "}\n";
 
 				$("#activeStyle").replaceWith("<style id='activeStyle' type='text/css'>" + outputCSS + "</style>");
 				//outputCSS = outputCSS.replace(/;/g,";<br />&nbsp;&nbsp;").replace(/{/g,"{<br />&nbsp;&nbsp;").replace(/}/g,"&nbsp;}<br />");
 				$("#cssOutput #code").html(outputCSS);
 
-				console.log("Created output" + outputCSS);
+				//console.log("Created output" + outputCSS);
 			}
 
 
@@ -189,7 +197,24 @@
 
 				 $("head").append("<style id='activeStyle' type='text/css'></style>");
 				 makeCSS();				
+				$("#width").val(cssElements['width']);
+				$("#height").val(cssElements['height']);
+				$("#labelBoxLeft").val(cssElements['labelBoxLeft']);
+				$("#borderWidth").val(cssElements['borderWidth']);
+				$("#fontSize").val(cssElements['fontSize']);
+				$("#borderColor").val(cssElements['borderColor']);
+				$("#backgroundColor").val(cssElements['backgroundColor']);
+				$("#borderQuestion").val(cssElements['borderQuestion']);
+
+
+				$(".settings input").change(function() {
+					cssElements[$(this).attr("id")] = $(this).val();
+					console.log($(this).attr("id"));
+					console.log(cssElements[$(this).attr("id")]);
+					makeCSS();
+				});
 			});
+
 
 		</script>
 	</head>
@@ -200,19 +225,39 @@
 					<div id="labelOutput">
 						<div class="labelContainer">
 							<div class="labelArrow"></div>
-							<div class="labelBox"><span>Contents</span></div>
+							<div class="labelBox"></div>
 						</div>
 					</div>
 
 					<div id="controls">
 						<div id="controlsOne">
-							Label Width
-							Label Height
+
+							<form class="settings">
+								<div class="form-title">Width</div>
+								<input class="form-field" type="text" id="width"/><br />
+								<div class="form-title">Height</div>
+								<input class="form-field" type="text" id="height" /><br />
+
+								<div class="form-title">Width</div>
+								<input class="form-field" type="text" id="labelBoxLeft"/><br />
+								<div class="form-title">Border Width</div>
+								<input class="form-field" type="text" id="borderWidth" /><br />
+								<div class="form-title">Font Size</div>
+								<input class="form-field" type="text" id="fontSize" /><br />
+							</form>
 							Box Shadow?
 							Padding
 						</div>
 
 						<div id="controlsTwo">
+							<form class="settings">
+								<div class="form-title">Border?</div>
+								<input class="form-field" type="text" id="borderQuestion"/><br />
+								<div class="form-title">Border Colour</div>
+								<input class="form-field" type="text" id="borderColor"/><br />
+								<div class="form-title">Fill Colour</div>
+								<input class="form-field" type="text" id="backgroundColor" /><br />
+							</form>
 							Border?
 							Border Color
 							Fill Color
