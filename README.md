@@ -18,4 +18,6 @@ Current Features
 * Font Colour
 * Message
 
-Feel free to fork project and make any improves.
+Feel free to fork project and create pull requests.
+
+Inspired by: http://livetools.uiparade.com/button-builder.html
