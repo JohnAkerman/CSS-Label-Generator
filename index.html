@@ -29,8 +29,9 @@
 
 			function makeHTML() {
 				
-				outputHTML = "<div class='labelContainer'><div class='labelArrow'><div class='labelArrowInner'></div></div><div class='labelBox'><div class='labelBoxInner'><span class='labelMessage'>"+cssElements['message']+"</span></div></div></div>";
+				//outputHTML = "<div class='labelContainer'><div class='labelArrow'><div class='labelArrowInner'></div></div><div class='labelBox'><div class='labelBoxInner'><span class='labelMessage'>"+cssElements['message']+"</span></div></div></div>";
 
+outputHTML = "<div class='labelContainer'><div class='labelArrow'></div><div class='labelBox'><span class='labelMessage'>"+cssElements['message']+"</span></div></div>";
 				$("#labelOutput").html(outputHTML);
 			}
 
@@ -49,12 +50,7 @@
 				outputCSS += "\ttop: 0;\n";
 				outputCSS += "\tdisplay: block;\n";		
 				outputCSS += "\tbackground-color: " + cssElements['backgroundColor'] + ";\n";
-				outputCSS += "\ttext-align: center;\n";
-				outputCSS += "\tline-height: " + (cssElements['height'] - cssElements['borderWidth']) + "px;\n";
-				outputCSS += "\tfont-size: " + cssElements['fontSize'] + "px;\n";
-				outputCSS += "\tfont-weight: " + cssElements['fontWeight'] + ";\n";
-				outputCSS += "\tfont-family: Arial, sans-serif;\n";
-				outputCSS += "\tcolor: " + cssElements['fontColor'] + ";\n";
+		
 
 				if (parseInt(cssElements['box-shadow']) == 1) {
 					outputCSS += "\tbox-shadow: rgba(0,0,0,0.3) 0 1px 1px;\n";
@@ -65,18 +61,19 @@
 				outputCSS += "}\n";
 
 				if (parseInt(cssElements['borderQuestion']) == 1) {
-					outputCSS += ".labelBoxInner {\n";
-					outputCSS += "\twidth: " + (cssElements['width'] - cssElements['borderWidth']) + "px;\n";
-					outputCSS += "\theight: " + (cssElements['height'] - cssElements['borderWidth'] - cssElements['borderWidth']) + "px;\n";
+					outputCSS += ".labelBox:before {\n";
+					outputCSS += "\twidth: " + (cssElements['width'] + cssElements['borderWidth']) + "px;\n";
+					outputCSS += "\theight: " + (cssElements['height'] + cssElements['borderWidth'] + cssElements['borderWidth']) + "px;\n";
 					outputCSS += "\tposition: absolute;\n";
 
 					if (cssElements['position'] == "right")
-						outputCSS += "\tleft: " + cssElements['borderWidth'] + "px;\n";
+						outputCSS += "\tleft: -" + cssElements['borderWidth'] + "px;\n";
 					
 					outputCSS += "\tdisplay: block;\n";
-					outputCSS += "\ttop: " + cssElements['borderWidth'] + "px;\n";
+					outputCSS += "\ttop: -" + cssElements['borderWidth'] + "px;\n";
 					outputCSS += "\tbackground-color: " + cssElements['borderColor'] + ";\n";
 					outputCSS += "\tcontent: '';\n";
+					outputCSS += "\tz-index: -1;\n";
 					outputCSS += "}\n";
 				}
 
@@ -98,31 +95,43 @@
 				outputCSS += "}\n";
 
 				if (parseInt(cssElements['borderQuestion']) == 1) {
-					outputCSS += ".labelArrowInner {\n";
+					outputCSS += ".labelArrow:before {\n";
 					outputCSS += "\tcontent: '';\n";
 					outputCSS += "\twidth: 0;\n";
 					outputCSS += "\theight: 0;\n";
-					outputCSS += "\tborder-top: " + (cssElements['labelBoxLeft'] - cssElements['borderWidth']) + "px solid " + cssElements['backgroundTrans'] + ";\n";
-					outputCSS += "\tborder-bottom: " + (cssElements['labelBoxLeft'] - cssElements['borderWidth']) + "px solid " + cssElements['backgroundTrans'] + ";\n";
+					outputCSS += "\tborder-top: " + (cssElements['borderWidth'] + cssElements['labelBoxLeft']) + "px solid " + cssElements['backgroundTrans'] + ";\n";
+					outputCSS += "\tborder-bottom: " + (cssElements['borderWidth'] + cssElements['labelBoxLeft']) + "px solid " + cssElements['backgroundTrans'] + ";\n";
 
 					if (cssElements['position'] == "right")
 						outputCSS += "\tborder-left: " + (cssElements['labelBoxLeft'] - cssElements['borderWidth']) + "px solid " + cssElements['borderColor'] + ";\n";
 					else
-						outputCSS += "\tborder-right: " + (cssElements['labelBoxLeft'] - cssElements['borderWidth']) + "px solid " + cssElements['borderColor'] + ";\n";
+						outputCSS += "\tborder-right: " + (cssElements['borderWidth'] + cssElements['labelBoxLeft']) + "px solid " + cssElements['borderColor'] + ";\n";
 
 					outputCSS += "\tbackground-color: " + cssElements['backgroundTrans'] + ";\n";
 					outputCSS += "\tposition: absolute;\n";
-					outputCSS += "\ttop: -" + (cssElements['labelBoxLeft'] - cssElements['borderWidth']) + "px;\n";
+					outputCSS += "\ttop: -" + (cssElements['borderWidth'] + cssElements['labelBoxLeft']) + "px;\n";
 					
 					if (cssElements['position'] == "right") {
 						var tmp = parseInt(cssElements['labelBoxLeft']) + 1;
-						outputCSS += "\tleft: -" + tmp +  "px;\n";
-					} else {
-						var tmp = parseInt(cssElements['borderWidth']) + 1;
 						outputCSS += "\tleft: " + tmp +  "px;\n";
+					} else {
+						outputCSS += "\tleft: -" + cssElements['borderWidth'] +  "px;\n";
 					}
+					outputCSS += "\tz-index: -1;\n";
 					outputCSS += "}\n";
 				}
+
+				outputCSS += ".labelMessage{\n";
+				outputCSS += "\tdisplay: block;\n";
+				outputCSS += "\tposition: relative;\n";
+				outputCSS += "\ttext-align: center;\n";
+				//outputCSS += "\tline-height: " + (cssElements['height'] - cssElements['borderWidth']) + "px;\n";
+				outputCSS += "\tfont-size: " + cssElements['fontSize'] + "px;\n";
+				outputCSS += "\tfont-weight: " + cssElements['fontWeight'] + ";\n";
+				outputCSS += "\tfont-family: Arial, sans-serif;\n";
+				outputCSS += "\tcolor: " + cssElements['fontColor'] + ";\n";
+				outputCSS += "}\n";
+
 
 				$("#activeStyle").replaceWith("<style id='activeStyle' type='text/css'>" + outputCSS + "</style>");
 				$("#cssOutput #code").html(outputCSS);
