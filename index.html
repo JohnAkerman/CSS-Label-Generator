@@ -99,7 +99,7 @@
 				border:none!important;
 				background: url(images/slider-toggle.png) top no-repeat!important; 
 				width: 1.6em!important; 
-				height: 1.6em!important; 
+				height: 2em!important; 
 				cursor:pointer!important;
 			}
 
@@ -127,6 +127,7 @@
 			cssElements['position'] = "left";
 
 			function makeHTML() {
+				
 				outputHTML = "<div class='labelContainer'><div class='labelArrow'><div class='labelArrowInner'></div></div><div class='labelBox'><div class='labelBoxInner'><span class='labelMessage'>"+cssElements['message']+"</span></div></div></div>";
 
 				$("#labelOutput").html(outputHTML);
