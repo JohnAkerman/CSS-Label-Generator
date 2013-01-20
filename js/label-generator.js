@@ -11,17 +11,17 @@ var outputCSS = "", outputHTML = "";
 
 cssElements['width'] = 300;
 cssElements['height'] = 100;
-cssElements['borderColor'] = "red";
-cssElements['backgroundColor'] = "grey";
-cssElements['borderWidth'] = 25;
-cssElements['fontSize'] = 30;
+cssElements['borderColor'] = "#3156c6";
+cssElements['backgroundColor'] = "#5683f7";
+cssElements['borderWidth'] = 5;
+cssElements['fontSize'] = 25;
 cssElements['fontWeight'] = "bold";
-cssElements['fontColor'] = "black";
+cssElements['fontColor'] = "white";
 cssElements['backgroundTrans'] = "transparent";
-cssElements['message'] = "Message";
+cssElements['message'] = "Label Generator";
 cssElements['borderQuestion'] = 1;
 cssElements['box-shadow'] = 0;
-cssElements['position'] = "left";
+cssElements['position'] = "right";
 
 function makeHTML() {
 	
@@ -119,7 +119,7 @@ function makeCSS() {
 	outputCSS += ".labelMessage{\n";
 	outputCSS += "\tdisplay: block;\n";
 	outputCSS += "\tposition: relative;\n";
-	otuputCSS += "\ttext-align: center;\n";
+	outputCSS += "\ttext-align: center;\n";
 	outputCSS += "\tfont-size: " + cssElements['fontSize'] + "px;\n";
 	outputCSS += "\tfont-weight: " + cssElements['fontWeight'] + ";\n";
 	outputCSS += "\tfont-family: Arial, sans-serif;\n";
