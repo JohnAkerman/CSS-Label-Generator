@@ -24,6 +24,7 @@ cssElements['box-shadow'] = 0;
 cssElements['position'] = "right";
 cssElements['textshadowQuestion'] = 1;
 cssElements['text-shadow']  = "0px 1px 1px rgba(0,0,0,0.4);"
+cssElements['msgTop'] = 33;
 
 function makeHTML() {
 	
@@ -126,11 +127,12 @@ function makeCSS() {
 	outputCSS += "\tfont-weight: " + cssElements['fontWeight'] + ";\n";
 	outputCSS += "\tfont-family: Arial, sans-serif;\n";
 	outputCSS += "\tcolor: " + cssElements['fontColor'] + ";\n";
+	outputCSS += "\ttop: " + cssElements['msgTop'] + "px;\n";
 	
 	if (parseInt(cssElements['textshadowQuestion']) == 1) {
 		outputCSS += "\ttext-shadow: " + cssElements['text-shadow'] + ";\n";
 	}
-	
+
 	outputCSS += "}\n";
 
 	$("#activeStyle").replaceWith("<style id='activeStyle' type='text/css'>" + outputCSS + "</style>");
@@ -185,12 +187,19 @@ $(document).ready(function() {
 		max: 1,
 		slide: function(event, ui) {
 		    cssElements['borderQuestion'] = ui.value;
+		    if (ui.value == 0) {
+		    	$("#borderColor").attr("disabled", "disabled");
+		    	$("#borderColor").addClass("disabledBox");
+		    } else {
+		    	$("#borderColor").removeAttr("disabled"); 
+		    	$("#borderColor").removeClass("disabledBox");
+		    }
 		    makeCSS();
 		}
 	});	
 
 	$('#borderWidth').slider({
-		value: 25,
+		value: 5,
 		min: 1,
 		max: 50,
 		slide: function(event, ui) {
@@ -200,11 +209,21 @@ $(document).ready(function() {
 	});	
 
 	$('#fontSize').slider({
-		value: 30,
+		value: 25,
 		min: 9,
 		max: 80,
 		slide: function(event, ui) {
 		    cssElements['fontSize'] = ui.value;
+		    makeCSS();
+		}
+	});	
+
+	$('#msgTop').slider({
+		value: 33,
+		min: 0,
+		max: 100,
+		slide: function(event, ui) {
+		    cssElements['msgTop'] = ui.value;
 		    makeCSS();
 		}
 	});	
@@ -215,6 +234,13 @@ $(document).ready(function() {
 		max: 1,
 		slide: function(event, ui) {
 		    cssElements['textshadowQuestion'] = ui.value;
+		    if (ui.value == 0) {
+		    	$("#text-shadow").attr("disabled", "disabled");
+		    	$("#text-shadow").addClass("disabledBox");
+		    } else {
+		    	$("#text-shadow").removeAttr("disabled"); 
+		    	$("#text-shadow").removeClass("disabledBox");
+		    }
 		    makeCSS();
 		}
 	});

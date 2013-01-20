@@ -75,6 +75,12 @@ html { background: url(../images/debut_dark.png) repeat 0 0 ;}
 	text-align: center;
 }
 
+input.disabledBox {
+	background-color: #c7c7c7;
+	border: 1px solid #969696;
+	color: #a5a5a5;
+}
+
 .sliderAreaLarge {
 	width: 130px;
 }
