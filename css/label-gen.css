@@ -1,0 +1,113 @@
+* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+html { background: url(../images/debut_dark.png) repeat 0 0 ;}
+
+#wrapper {
+	width: 960px;
+	margin: 0 auto;
+	margin-top: 100px;
+	min-height: 40px;
+}
+
+
+#actions {
+	float: left;
+	width: 560px;
+}
+#labelOutput {
+	height: 300px;
+	margin-bottom: 20px;
+}
+
+#controls {
+	height: 190px;
+}
+
+#controls .controlSet {
+	width: 160px;
+	float: left;
+	margin: 0 10px;
+}
+
+#cssOutput {
+	float: right;
+	width: 400px;
+}
+
+#cssOutput #code {
+	width: 390px;
+	display: block;
+	background-color: rgba(0,0,0,0.24);
+	-webkit-box-shadow: 0 1px 1px 0 rgba(255,255,255,0.3),inset 0 1px 5px rgba(0,0,0,0.1);
+	-moz-box-shadow:    0 1px 1px 0 rgba(255,255,255,0.3),inset 0 1px 5px rgba(0,0,0,0.1);
+	box-shadow:         0 1px 1px 0 rgba(255,255,255,0.3),inset 0 1px 5px rgba(0,0,0,0.1);
+	border-radius: 5px;
+	white-space: pre;
+	color: white;
+	color: rgba(255,255,255,0.8);
+	text-shadow: 0 1px 1px black;
+	font-size: 11px;
+	font-family: "Courier new";
+	font-weight: bold;
+	padding: 10px;
+}
+
+.labelContainer{ position: relative;}
+
+.settings {
+	background-color: white;
+	border-radius: 5px;
+	padding: 10px 15px;
+	font: 12px 'Helvetica Neue',Helvetica, sans-serif;
+	color: #626671;
+	box-shadow: 1px 1px 6px 1px rgba(0,0,0,0.5);
+}
+
+.sliderAreaLarge {
+	width: 130px;
+}
+
+.sliderAreaSmall {
+	width: 70px;
+	float: left;
+	margin: 0 5px;
+}
+
+.sliderSlide {
+	width: 50px;
+	margin: 0 auto;
+}
+
+.sliderArea span {
+	display: block;
+	margin: 5px 0;
+}
+
+.clear {
+	float: none;
+	clear: both;
+}
+
+.ui-slider .ui-slider-handle { 
+	border:none!important;
+	background: url(../images/slider-toggle2.png) top no-repeat!important; 
+	width: 1.6em!important; 
+	height: 2em!important; 
+	cursor:pointer!important;
+}
+
+.ui-widget-content {
+	background-color: #5683f7;
+	border: 1px solid #3156c6;
+}
+
+.form-field {
+	background-color: #e5e5e5;
+	border: 1px solid #c8c8c8;
+	margin: 3px 0 8px 0;
+	border-radius: 3px;
+	padding: 3px;
+	padding-left: 5px;
+	color: #54576a;
+	height: 30px;
+}
