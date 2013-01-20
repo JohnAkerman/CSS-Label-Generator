@@ -62,13 +62,15 @@ outputHTML = "<div class='labelContainer'><div class='labelArrow'></div><div cla
 
 				if (parseInt(cssElements['borderQuestion']) == 1) {
 					outputCSS += ".labelBox:before {\n";
-					outputCSS += "\twidth: " + (cssElements['width'] + cssElements['borderWidth']) + "px;\n";
+					outputCSS += "\twidth: " + (cssElements['width'] + cssElements['borderWidth'] + 1) + "px;\n";
 					outputCSS += "\theight: " + (cssElements['height'] + cssElements['borderWidth'] + cssElements['borderWidth']) + "px;\n";
 					outputCSS += "\tposition: absolute;\n";
 
 					if (cssElements['position'] == "right")
 						outputCSS += "\tleft: -" + cssElements['borderWidth'] + "px;\n";
-					
+					else 
+						outputCSS += "\tleft: -1px;\n";
+
 					outputCSS += "\tdisplay: block;\n";
 					outputCSS += "\ttop: -" + cssElements['borderWidth'] + "px;\n";
 					outputCSS += "\tbackground-color: " + cssElements['borderColor'] + ";\n";
@@ -99,11 +101,11 @@ outputHTML = "<div class='labelContainer'><div class='labelArrow'></div><div cla
 					outputCSS += "\tcontent: '';\n";
 					outputCSS += "\twidth: 0;\n";
 					outputCSS += "\theight: 0;\n";
-					outputCSS += "\tborder-top: " + (cssElements['borderWidth'] + cssElements['labelBoxLeft']) + "px solid " + cssElements['backgroundTrans'] + ";\n";
+					outputCSS += "\tborder-top: " + (cssElements['borderWidth'] + cssElements['labelBoxLeft'] ) + "px solid " + cssElements['backgroundTrans'] + ";\n";
 					outputCSS += "\tborder-bottom: " + (cssElements['borderWidth'] + cssElements['labelBoxLeft']) + "px solid " + cssElements['backgroundTrans'] + ";\n";
 
 					if (cssElements['position'] == "right")
-						outputCSS += "\tborder-left: " + (cssElements['labelBoxLeft'] + cssElements['borderWidth']) + "px solid " + cssElements['borderColor'] + ";\n";
+						outputCSS += "\tborder-left: " + (cssElements['labelBoxLeft'] + cssElements['borderWidth'] + 1) + "px solid " + cssElements['borderColor'] + ";\n";
 					else
 						outputCSS += "\tborder-right: " + (cssElements['labelBoxLeft'] + cssElements['borderWidth']) + "px solid " + cssElements['borderColor'] + ";\n";
 
@@ -112,9 +114,9 @@ outputHTML = "<div class='labelContainer'><div class='labelArrow'></div><div cla
 					outputCSS += "\ttop: -" + (cssElements['borderWidth'] + cssElements['labelBoxLeft']) + "px;\n";
 					
 					if (cssElements['position'] == "right") {
-						outputCSS += "\tleft: -" + cssElements['labelBoxLeft'] +  "px;\n";
+						outputCSS += "\tleft: -" + (cssElements['labelBoxLeft'] - 1) +  "px;\n";
 					} else {
-						outputCSS += "\tleft: -" + cssElements['borderWidth'] +  "px;\n";
+						outputCSS += "\tleft: -" + (cssElements['borderWidth'] + 1) +  "px;\n";
 					}
 					outputCSS += "\tz-index: -1;\n";
 					outputCSS += "}\n";
@@ -124,7 +126,6 @@ outputHTML = "<div class='labelContainer'><div class='labelArrow'></div><div cla
 				outputCSS += "\tdisplay: block;\n";
 				outputCSS += "\tposition: relative;\n";
 				outputCSS += "\ttext-align: center;\n";
-				//outputCSS += "\tline-height: " + (cssElements['height'] - cssElements['borderWidth']) + "px;\n";
 				outputCSS += "\tfont-size: " + cssElements['fontSize'] + "px;\n";
 				outputCSS += "\tfont-weight: " + cssElements['fontWeight'] + ";\n";
 				outputCSS += "\tfont-family: Arial, sans-serif;\n";
