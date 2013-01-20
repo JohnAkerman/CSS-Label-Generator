@@ -63,6 +63,18 @@ html { background: url(../images/debut_dark.png) repeat 0 0 ;}
 	box-shadow: 1px 1px 6px 1px rgba(0,0,0,0.3);
 }
 
+.controlHeading {
+	font-weight: bold;
+	font-size: 14px;
+	font-family: Arial, Verdana, sans-serif;
+	color: #474747;
+	display: block;
+	margin-bottom: 10px;
+	padding-bottom:3px;
+	border-bottom: 1px dotted #9E9E9E;
+	text-align: center;
+}
+
 .sliderAreaLarge {
 	width: 130px;
 }

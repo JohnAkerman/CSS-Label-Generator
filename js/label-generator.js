@@ -22,6 +22,8 @@ cssElements['message'] = "Label Generator";
 cssElements['borderQuestion'] = 1;
 cssElements['box-shadow'] = 0;
 cssElements['position'] = "right";
+cssElements['textshadowQuestion'] = 1;
+cssElements['text-shadow']  = "0px 1px 1px rgba(0,0,0,0.4);"
 
 function makeHTML() {
 	
@@ -124,6 +126,11 @@ function makeCSS() {
 	outputCSS += "\tfont-weight: " + cssElements['fontWeight'] + ";\n";
 	outputCSS += "\tfont-family: Arial, sans-serif;\n";
 	outputCSS += "\tcolor: " + cssElements['fontColor'] + ";\n";
+	
+	if (parseInt(cssElements['textshadowQuestion']) == 1) {
+		outputCSS += "\ttext-shadow: " + cssElements['text-shadow'] + ";\n";
+	}
+	
 	outputCSS += "}\n";
 
 	$("#activeStyle").replaceWith("<style id='activeStyle' type='text/css'>" + outputCSS + "</style>");
@@ -202,6 +209,16 @@ $(document).ready(function() {
 		}
 	});	
 
+	$('#textshadowQuestion').slider({
+		value: 1,
+		min: 0,
+		max: 1,
+		slide: function(event, ui) {
+		    cssElements['textshadowQuestion'] = ui.value;
+		    makeCSS();
+		}
+	});
+
 	$('#tester').slider({
 		value: 30,
 		min: 9,
@@ -216,6 +233,7 @@ $(document).ready(function() {
 	$("#backgroundColor").val(cssElements['backgroundColor']);
 	$("#fontColor").val(cssElements['fontColor']);
 	$("#message").val(cssElements['message']);
+	$("#text-shadow").val(cssElements['text-shadow']);
 
 	$(".settings input").change(function() {
 		cssElements[$(this).attr("id")] = $(this).val();
