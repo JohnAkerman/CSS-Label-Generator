@@ -9,6 +9,20 @@ html { background: url(../images/debut_dark.png) repeat 0 0 ;}
 	min-height: 40px;
 }
 
+#fork_me {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: 0;
+}
+
+#fork_me:hover {
+  opacity: 0.7;
+}
+
+#fork_me img {
+  border: none;
+}
 
 #actions {
 	float: left;
