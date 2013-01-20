@@ -60,7 +60,7 @@ html { background: url(../images/debut_dark.png) repeat 0 0 ;}
 	padding: 10px 15px;
 	font: 12px 'Helvetica Neue',Helvetica, sans-serif;
 	color: #626671;
-	box-shadow: 1px 1px 6px 1px rgba(0,0,0,0.5);
+	box-shadow: 1px 1px 6px 1px rgba(0,0,0,0.3);
 }
 
 .sliderAreaLarge {
@@ -110,4 +110,6 @@ html { background: url(../images/debut_dark.png) repeat 0 0 ;}
 	padding-left: 5px;
 	color: #54576a;
 	height: 30px;
+	-webkit-box-shadow: inset 0px 1px 0px 0px rgba(255,255,255,0.5);
+	box-shadow: inset 0px 1px 0px 0px rgba(255,255,255,0.5);
 }
