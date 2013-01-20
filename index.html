@@ -103,17 +103,16 @@ outputHTML = "<div class='labelContainer'><div class='labelArrow'></div><div cla
 					outputCSS += "\tborder-bottom: " + (cssElements['borderWidth'] + cssElements['labelBoxLeft']) + "px solid " + cssElements['backgroundTrans'] + ";\n";
 
 					if (cssElements['position'] == "right")
-						outputCSS += "\tborder-left: " + (cssElements['labelBoxLeft'] - cssElements['borderWidth']) + "px solid " + cssElements['borderColor'] + ";\n";
+						outputCSS += "\tborder-left: " + (cssElements['labelBoxLeft'] + cssElements['borderWidth']) + "px solid " + cssElements['borderColor'] + ";\n";
 					else
-						outputCSS += "\tborder-right: " + (cssElements['borderWidth'] + cssElements['labelBoxLeft']) + "px solid " + cssElements['borderColor'] + ";\n";
+						outputCSS += "\tborder-right: " + (cssElements['labelBoxLeft'] + cssElements['borderWidth']) + "px solid " + cssElements['borderColor'] + ";\n";
 
 					outputCSS += "\tbackground-color: " + cssElements['backgroundTrans'] + ";\n";
 					outputCSS += "\tposition: absolute;\n";
 					outputCSS += "\ttop: -" + (cssElements['borderWidth'] + cssElements['labelBoxLeft']) + "px;\n";
 					
 					if (cssElements['position'] == "right") {
-						var tmp = parseInt(cssElements['labelBoxLeft']) + 1;
-						outputCSS += "\tleft: " + tmp +  "px;\n";
+						outputCSS += "\tleft: -" + cssElements['labelBoxLeft'] +  "px;\n";
 					} else {
 						outputCSS += "\tleft: -" + cssElements['borderWidth'] +  "px;\n";
 					}
