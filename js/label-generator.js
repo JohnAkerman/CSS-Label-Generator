@@ -42,7 +42,7 @@ function makeCSS() {
 	outputCSS = ".labelBox {\n";
 	outputCSS += "\twidth: " + cssElements['width'] + "px;\n";
 	outputCSS += "\theight: " + cssElements['height'] + "px;\n";
-	outputCSS += "\tposition: absolute;\n";
+	outputCSS += "\tposition: relative;\n";
 
 	if (cssElements['position'] == "left")
 		outputCSS += "\tleft: " + cssElements['labelBoxLeft'] + "px;\n";
@@ -94,6 +94,7 @@ function makeCSS() {
 
 	outputCSS += "\tbackground-color: " + cssElements['backgroundTrans'] + ";\n";
 	outputCSS += "\tposition: relative;\n";
+	outputCSS += "\tfloat: left;\n";
 	outputCSS += "}\n";
 
 	if (parseInt(cssElements['borderQuestion']) == 1) {
