@@ -17,6 +17,8 @@ Current Features
 * Font Size
 * Font Colour
 * Message
+* Text Shadow On/Off
+* Text Shadow Colour
 
 Feel free to fork project and create pull requests.
 
