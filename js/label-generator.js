@@ -29,7 +29,10 @@ cssElements['msgTop'] = 33;
 function makeHTML() {
 	
 	outputHTML = "<div class='labelContainer'><div class='labelArrow'></div><div class='labelBox'><span class='labelMessage'>"+cssElements['message']+"</span></div></div>";
+	outputHTMLCode = "<div class='labelContainer'>\n\t<div class='labelArrow'></div>\n\t<div class='labelBox'>\n\t\t<span class='labelMessage'>"+cssElements['message']+"</span>\n\t</div>\n</div>";
+
 	$("#labelOutput").html(outputHTML);
+	$("#htmlOutput .code").text(outputHTMLCode);
 }
 
 function makeCSS() {
@@ -124,7 +127,7 @@ function makeCSS() {
 	outputCSS += "\tposition: relative;\n";
 	outputCSS += "\ttext-align: center;\n";
 	outputCSS += "\tfont-size: " + cssElements['fontSize'] + "px;\n";
-	outputCSS += "\tfont-weight: " + cssElements['fontWeight'] + ";\n";
+	outputCSS += "\tfont-weight: " + cssElements[ 'fontWeight'] + ";\n";
 	outputCSS += "\tfont-family: Arial, sans-serif;\n";
 	outputCSS += "\tcolor: " + cssElements['fontColor'] + ";\n";
 	outputCSS += "\ttop: " + cssElements['msgTop'] + "px;\n";
@@ -136,11 +139,12 @@ function makeCSS() {
 	outputCSS += "}\n";
 
 	$("#activeStyle").replaceWith("<style id='activeStyle' type='text/css'>" + outputCSS + "</style>");
-	$("#cssOutput #code").html(outputCSS);
+	$("#cssOutput .code").html(outputCSS);
 }
 
-
 $(document).ready(function() {
+
+	$("html").removeClass("no-js");
 
 	$("head").append("<style id='activeStyle' type='text/css'></style>");
 	

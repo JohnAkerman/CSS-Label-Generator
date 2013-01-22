@@ -1,5 +1,10 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+
+
 	<head>
 		<meta charset="UTF-8">
 		<title>CSS Label Generator</title>
@@ -92,8 +97,14 @@
 					</div>
 				</div>
 
+			<div id="htmlOutput">
+				<span class="codeHeading">HTML</span>
+				<code class="code" readonly="readonly"></code>
+			</div>
+			
 			<div id="cssOutput">
-				<code id="code" readonly="readonly"></code>
+				<span class="codeHeading">CSS</span>
+				<code class="code" readonly="readonly"></code>
 			</div>
 
 		</div>

@@ -5,7 +5,7 @@ html { background: url(../images/debut_dark.png) repeat 0 0 ;}
 #wrapper {
 	width: 960px;
 	margin: 0 auto;
-	margin-top: 100px;
+	margin-top: 70px;
 	min-height: 40px;
 }
 
@@ -43,12 +43,17 @@ html { background: url(../images/debut_dark.png) repeat 0 0 ;}
 	margin: 0 10px;
 }
 
+#htmlOutput {
+	float: right;
+	width: 400px;
+}
+
 #cssOutput {
 	float: right;
 	width: 400px;
 }
 
-#cssOutput #code {
+.code {
 	width: 390px;
 	display: block;
 	background-color: rgba(0,0,0,0.24);
@@ -56,7 +61,6 @@ html { background: url(../images/debut_dark.png) repeat 0 0 ;}
 	-moz-box-shadow:    0 1px 1px 0 rgba(255,255,255,0.3),inset 0 1px 5px rgba(0,0,0,0.1);
 	box-shadow:         0 1px 1px 0 rgba(255,255,255,0.3),inset 0 1px 5px rgba(0,0,0,0.1);
 	border-radius: 5px;
-	white-space: pre;
 	color: white;
 	color: rgba(255,255,255,0.8);
 	text-shadow: 0 1px 1px black;
@@ -64,6 +68,15 @@ html { background: url(../images/debut_dark.png) repeat 0 0 ;}
 	font-family: "Courier new";
 	font-weight: bold;
 	padding: 10px;
+	white-space: pre-wrap;
+	white-space: -moz-pre-wrap !important; /* Mozilla, since 1999 */
+	white-space: -pre-wrap; /* Opera 4-6 */
+	white-space: -o-pre-wrap; /* Opera 7 */
+	word-wrap: break-word; /* Internet Explorer 5.5+ */
+}
+
+.ie7 .code {
+	background-color: black;
 }
 
 .labelContainer{ position: relative;}
@@ -144,4 +157,19 @@ input.disabledBox {
 	height: 30px;
 	-webkit-box-shadow: inset 0px 1px 0px 0px rgba(255,255,255,0.5);
 	box-shadow: inset 0px 1px 0px 0px rgba(255,255,255,0.5);
+}
+
+#htmlOutput, #cssOutput {
+	position: relative;
+	margin-bottom: 10px;
+}
+
+.codeHeading {
+	font-size: 18px;
+	color: #009aea;
+	font-weight: bold;
+	position: absolute;
+	right: 25px;
+	top: 15px;
+	text-shadow: 1px 1px 1px black;
 }
