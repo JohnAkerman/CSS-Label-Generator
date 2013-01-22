@@ -145,9 +145,9 @@ function makeCSS() {
 $(document).ready(function() {
 
 	$("html").removeClass("no-js");
-
 	$("head").append("<style id='activeStyle' type='text/css'></style>");
 	
+	$("#no-js-message").remove();	
 	makeHTML();
 	makeCSS();
 
