@@ -23,7 +23,7 @@ cssElements['borderQuestion'] = 1;
 cssElements['box-shadow'] = 0;
 cssElements['position'] = "right";
 cssElements['textshadowQuestion'] = 1;
-cssElements['text-shadow']  = "0px 1px 1px rgba(0,0,0,0.4);"
+cssElements['text-shadow']  = "0px 1px 1px rgba(0,0,0,0.4)"
 cssElements['msgTop'] = 33;
 
 function makeHTML() {
