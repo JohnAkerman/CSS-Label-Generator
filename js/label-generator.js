@@ -24,7 +24,8 @@ cssElements['box-shadow'] = 0;
 cssElements['position'] = "right";
 cssElements['textshadowQuestion'] = 1;
 cssElements['text-shadow']  = "0px 1px 1px rgba(0,0,0,0.4)"
-cssElements['msgTop'] = 33;
+cssElements['msgTop'] = 30;
+cssElements['msgLeft'] = 0;
 
 function makeHTML() {
 	
@@ -131,7 +132,8 @@ function makeCSS() {
 	outputCSS += "\tfont-weight: " + cssElements[ 'fontWeight'] + ";\n";
 	outputCSS += "\tfont-family: Arial, sans-serif;\n";
 	outputCSS += "\tcolor: " + cssElements['fontColor'] + ";\n";
-	outputCSS += "\ttop: " + cssElements['msgTop'] + "px;\n";
+	outputCSS += "\ttop: " + cssElements['msgTop'] + "%;\n";
+	outputCSS += "\tleft: " + cssElements['msgLeft'] + "%;\n";
 	
 	if (parseInt(cssElements['textshadowQuestion']) == 1) {
 		outputCSS += "\ttext-shadow: " + cssElements['text-shadow'] + ";\n";
@@ -224,11 +226,21 @@ $(document).ready(function() {
 	});	
 
 	$('#msgTop').slider({
-		value: 33,
-		min: 0,
+		value: 30,
+		min: -100,
 		max: 100,
 		slide: function(event, ui) {
 		    cssElements['msgTop'] = ui.value;
+		    makeCSS();
+		}
+	});	
+
+	$('#msgLeft').slider({
+		value: 0,
+		min: -100,
+		max: 100,
+		slide: function(event, ui) {
+		    cssElements['msgLeft'] = ui.value;
 		    makeCSS();
 		}
 	});	
